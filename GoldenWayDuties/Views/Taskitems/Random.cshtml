@@ -1,0 +1,29 @@
+﻿
+@model GoldenWayDuties.ViewModels.RandomTaskitemViewModel
+@{
+    ViewBag.Title = "Random";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*
+    This is a comment on multiple lines.
+*@
+@{ 
+    var className = Model.Owners.Count > 2 ? "popular" : null;
+}
+
+<h2 class="@className">@Model.Taskitem.Name</h2>
+
+@if(Model.Owners.Count == 0)
+{
+    <p>No one has been assigned this task item</p>
+}
+else
+{
+    <ul>
+        @foreach (var owner in Model.Owners)
+        {
+            <li>@owner.Name</li>
+        }
+    </ul>
+}

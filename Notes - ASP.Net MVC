@@ -1,0 +1,144 @@
+==============ASP.NET MVC course Notes=============================
+
+prop+tab	:	creates a property
+Ctrl+r 		:	refresh the browser
+Ctrl+Shift+B: 	re-compile/build the program without reloading the browser
+ctrl+tab: 	move between open windows in your project
+mcvaction4+tab:	creates an action result
+
+
+==============ASP.NET MVC Fundamentals==============================
+===Convention-based Routing========================================
+custom routes in MVC
+The order of the routes matters. order from the most specific to the most generic.
+So create the custom route before the default route as follows:
+
+public class RouteConfig
+{
+	public static void RegisterRoutes(RouteCollection routes)
+	{
+		routes.MapRoute(
+			"TaskitemsByDueDate",
+			"taskitems/due/{year}/{month}",
+			new {controller = "Taskitems", action = "ByDueDate"},
+			new {year = @"\d{4}", month = @"\d{2}" });
+	}
+}
+
+Then create the ActionResult
+
+public ActionResult ByDueDate(int year, int month)
+{
+	return Content(year + "/" + month);
+}
+
+
+A cleaner and better way of creating custom routes is to use Attribute Routing
+1. first enable attribute route:
+public class RouteConfig
+{
+	public static void RegisterRoutes(RouteCollection routes)
+	{
+		routes.MapMvcAttributeRoutes();
+	}
+}
+
+2. create the attribute route:
+public class TaskitemsController : Controller
+{
+	// GET: Tasks/Random
+	[Route("taskitems/due/{year}/{month:regex(\\d{4}):range(1, 12)}")]
+}
+Applying constraints to attribute routes is more powerful. Other constraints supported by the frame work are: min, max, minlength, maxlength, int, float, guid etc.
+To apply constraints to attribute routes, just google: ASP.NET MVC Attribute Route Constraints.
+
+==============Passing Data to Views	========================================
+1. model property
+2. ViewData - no not use 
+3. ViewBag - do not use as has casting issues and magic properties
+
+Best to use model property
+
+==============View Models	========================================
+@model GoldenWayDuties.Models.Taskitem
+@{
+    ViewBag.Title = "Random";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Name</h2>
+In the above random view, we just displayed the taskitem name. What if we want to display the list of the Owners?
+We use a ViewModel. 
+It is a model specifically build for a View. 
+It includes any rows of data specific to the view
+
+==============WORKING WITH DATA	========================================
+Entity Frame (EF):
+Def: a tool used to access a database. More acturately, its classified as a Object Relatinal Mapper (ORM)
+Objects ----->Object / Relational Mapper (ORM) --->Relational Data
+Objects <-----Object / Relational Mapper (ORM) <---Relational Data
+
+EF provides a class called DbContext which is a gateway to our database.
+DbContext has one or more DbSets which represents tables in our database.
+We use LINQ to query these DbSets and EF translate our queries to SQL queries at run time.
+There are two ways to use EF
+i) Database First
+ii) Code First
+
+==============Code First Migration	========================================
+Open package manager console as follows:
+ - tools/Nutget package Manager/Package Manager Console
+First time to use migration, you need to enable it:
+PM> enable-migrations
+PM> add-migration InitialModel -- creates a migration and name it 'intialModel'
+PM> add-migration InitialModel -force ---this overwirtes an existing migration
+PM> update-database --runs the migation and generates the database
+==============Accessing Data from Database	========================================
+We need a Db context to access the database:
+private ApplicationDbContext _context;
+Then initialise the Db context via a constructor:
+public OwnersController()
+{
+	_context = new ApplicationDbContext();
+}
+This Db context is a diposable object. so we need to properly dispose this object by overriding the Dispose method of the base controller class.
+
+protected override void Dispose(bool disposing)
+{
+	_context.Dispose();   
+}
+==============	========================================
+
+==============	========================================
+
+==============	========================================
+
+==============	========================================
+
+==============	========================================
+
+==============	========================================
+
+==============	========================================
+
+==============	========================================
+
+==============	========================================
+==============	========================================
+==============	========================================
+==============	========================================
+==============	========================================
+==============	========================================
+==============	========================================
+==============	========================================
+==============	========================================
+==============	========================================
+==============	========================================
+==============	========================================
+==============	========================================
+==============	========================================
+==============	========================================
+==============	========================================
+==============	========================================
+==============	========================================
+==============	========================================

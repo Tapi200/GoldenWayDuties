@@ -191,16 +191,44 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OwnersController.cs" />
+    <Compile Include="Controllers\TaskitemsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801081229569_InitialModel.cs" />
+    <Compile Include="Migrations\201801081229569_InitialModel.Designer.cs">
+      <DependentUpon>201801081229569_InitialModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801081310551_AddIsHouseResidentToOwner.cs" />
+    <Compile Include="Migrations\201801081310551_AddIsHouseResidentToOwner.Designer.cs">
+      <DependentUpon>201801081310551_AddIsHouseResidentToOwner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801090932580_AddResidentType.cs" />
+    <Compile Include="Migrations\201801090932580_AddResidentType.Designer.cs">
+      <DependentUpon>201801090932580_AddResidentType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801090936324_PopulateResidentTypes.cs" />
+    <Compile Include="Migrations\201801090936324_PopulateResidentTypes.Designer.cs">
+      <DependentUpon>201801090936324_PopulateResidentTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801091120224_ApplyAnnotatuionstoCustomerName.cs" />
+    <Compile Include="Migrations\201801091120224_ApplyAnnotatuionstoCustomerName.Designer.cs">
+      <DependentUpon>201801091120224_ApplyAnnotatuionstoCustomerName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Owner.cs" />
+    <Compile Include="Models\ResidentType.cs" />
+    <Compile Include="Models\Taskitem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\RandomTaskitemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-lumen.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -257,6 +285,12 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Taskitems\Random.cshtml" />
+    <Content Include="Views\Shared\_NavBar.cshtml" />
+    <Content Include="Views\Owners\Index.cshtml" />
+    <Content Include="Views\Owners\Details.cshtml" />
+    <Content Include="Views\Taskitems\Index.cshtml" />
+    <Content Include="Views\Taskitems\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -275,6 +309,23 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201801081229569_InitialModel.resx">
+      <DependentUpon>201801081229569_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801081310551_AddIsHouseResidentToOwner.resx">
+      <DependentUpon>201801081310551_AddIsHouseResidentToOwner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801090932580_AddResidentType.resx">
+      <DependentUpon>201801090932580_AddResidentType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801090936324_PopulateResidentTypes.resx">
+      <DependentUpon>201801090936324_PopulateResidentTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801091120224_ApplyAnnotatuionstoCustomerName.resx">
+      <DependentUpon>201801091120224_ApplyAnnotatuionstoCustomerName.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -28,7 +28,7 @@ namespace GoldenWayDuties.Controllers
 
         public ActionResult Details(int id)
         {
-            var owner = _context.Owners.SingleOrDefault(c => c.Id == id);
+            var owner = _context.Owners.Include(c => c.ResidentType).SingleOrDefault(c => c.Id == id);
 
             if (owner == null)
                 return HttpNotFound();

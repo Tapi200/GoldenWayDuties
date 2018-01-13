@@ -7,6 +7,7 @@ namespace GoldenWayDuties.Models
 {
     public class ResidentType
     {
+        public string Name { get; set; }
         public byte Id { get; set; }
         public short SignUpFee { get; set; }
         public byte DurataionInMonths { get; set; }

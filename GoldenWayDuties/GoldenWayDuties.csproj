@@ -216,8 +216,53 @@
     <Compile Include="Migrations\201801091120224_ApplyAnnotatuionstoCustomerName.Designer.cs">
       <DependentUpon>201801091120224_ApplyAnnotatuionstoCustomerName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801120826225_addingNameToResidentType.cs" />
+    <Compile Include="Migrations\201801120826225_addingNameToResidentType.Designer.cs">
+      <DependentUpon>201801120826225_addingNameToResidentType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801120838227_updateResidentTypeTable.cs" />
+    <Compile Include="Migrations\201801120838227_updateResidentTypeTable.Designer.cs">
+      <DependentUpon>201801120838227_updateResidentTypeTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801120924592_updateResidentTypeTable1.cs" />
+    <Compile Include="Migrations\201801120924592_updateResidentTypeTable1.Designer.cs">
+      <DependentUpon>201801120924592_updateResidentTypeTable1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801120944225_addingDateOfBirth.cs" />
+    <Compile Include="Migrations\201801120944225_addingDateOfBirth.Designer.cs">
+      <DependentUpon>201801120944225_addingDateOfBirth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801121004457_makeDateOfBirthNullable.cs" />
+    <Compile Include="Migrations\201801121004457_makeDateOfBirthNullable.Designer.cs">
+      <DependentUpon>201801121004457_makeDateOfBirthNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801121728531_addingGenreProperty.cs" />
+    <Compile Include="Migrations\201801121728531_addingGenreProperty.Designer.cs">
+      <DependentUpon>201801121728531_addingGenreProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801121732076_populateGenreTable.cs" />
+    <Compile Include="Migrations\201801121732076_populateGenreTable.Designer.cs">
+      <DependentUpon>201801121732076_populateGenreTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801121819378_fixGenreProperties.cs" />
+    <Compile Include="Migrations\201801121819378_fixGenreProperties.Designer.cs">
+      <DependentUpon>201801121819378_fixGenreProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801121836309_populateGenreTable1.cs" />
+    <Compile Include="Migrations\201801121836309_populateGenreTable1.Designer.cs">
+      <DependentUpon>201801121836309_populateGenreTable1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801131004406_addTaskitemsToDatabase.cs" />
+    <Compile Include="Migrations\201801131004406_addTaskitemsToDatabase.Designer.cs">
+      <DependentUpon>201801131004406_addTaskitemsToDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801131013149_populateTaskitems.cs" />
+    <Compile Include="Migrations\201801131013149_populateTaskitems.Designer.cs">
+      <DependentUpon>201801131013149_populateTaskitems.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Owner.cs" />
@@ -325,6 +370,39 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801091120224_ApplyAnnotatuionstoCustomerName.resx">
       <DependentUpon>201801091120224_ApplyAnnotatuionstoCustomerName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801120826225_addingNameToResidentType.resx">
+      <DependentUpon>201801120826225_addingNameToResidentType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801120838227_updateResidentTypeTable.resx">
+      <DependentUpon>201801120838227_updateResidentTypeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801120924592_updateResidentTypeTable1.resx">
+      <DependentUpon>201801120924592_updateResidentTypeTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801120944225_addingDateOfBirth.resx">
+      <DependentUpon>201801120944225_addingDateOfBirth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801121004457_makeDateOfBirthNullable.resx">
+      <DependentUpon>201801121004457_makeDateOfBirthNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801121728531_addingGenreProperty.resx">
+      <DependentUpon>201801121728531_addingGenreProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801121732076_populateGenreTable.resx">
+      <DependentUpon>201801121732076_populateGenreTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801121819378_fixGenreProperties.resx">
+      <DependentUpon>201801121819378_fixGenreProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801121836309_populateGenreTable1.resx">
+      <DependentUpon>201801121836309_populateGenreTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801131004406_addTaskitemsToDatabase.resx">
+      <DependentUpon>201801131004406_addTaskitemsToDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801131013149_populateTaskitems.resx">
+      <DependentUpon>201801131013149_populateTaskitems.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

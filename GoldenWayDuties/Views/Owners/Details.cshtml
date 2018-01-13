@@ -4,5 +4,31 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Name</h2>
+@*
+    <h2>@Model.Name</h2>
 
+    @if (!Model.DateOfBirth.HasValue)
+    {
+        <ul>
+            <li>@Model.Name</li>
+        </ul>
+    }
+    else
+    {
+        <ul>
+            <li>@Model.ResidentType.Name</li>
+            <li>@Model.DateOfBirth</li>
+        </ul>
+    }
+
+*@
+<h2>@Model.Name</h2>
+<ul>
+    <li>Membership Type: @Model.ResidentType.Name</li>
+    @if (Model.DateOfBirth.HasValue)
+    {
+        <li>@Model.DateOfBirth.Value.ToShortDateString()</li>
+    }
+
+
+</ul> 

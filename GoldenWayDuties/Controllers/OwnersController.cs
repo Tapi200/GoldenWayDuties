@@ -20,6 +20,11 @@ namespace GoldenWayDuties.Controllers
             _context.Dispose();   
         }
 
+        public ActionResult New()
+        {
+            return View();
+        }
+
         public ActionResult Index()
         {
             var owners = _context.Owners.Include(c => c.ResidentType).ToList();

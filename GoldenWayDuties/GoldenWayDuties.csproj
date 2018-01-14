@@ -336,6 +336,7 @@
     <Content Include="Views\Owners\Details.cshtml" />
     <Content Include="Views\Taskitems\Index.cshtml" />
     <Content Include="Views\Taskitems\Details.cshtml" />
+    <Content Include="Views\Owners\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

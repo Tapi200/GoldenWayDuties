@@ -12,6 +12,8 @@ namespace GoldenWayDuties.Models
         [Required]
         [StringLength(255)]
         public string Name { get; set; }
+
+        [Display(Name = "Date Of Birth")]
         public DateTime? DateOfBirth { get; set; }
         public bool IsHouseResident { get; set; }
         public ResidentType ResidentType { get; set; } //navigation property. Allows us to navigate from one type to another

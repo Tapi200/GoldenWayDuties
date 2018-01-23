@@ -1,32 +1,31 @@
 ﻿@model IEnumerable<GoldenWayDuties.Models.Taskitem>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Taskitems";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Taskitem</h2>
-@if (!Model.Any())
-{
-    <p>Currently no Taskitems listed</p>
-}
-else
-{
-    <table class="table table-bordered table-hover">
-        <thead>
+<h2>Taskitems</h2>
+
+<p>
+    @Html.ActionLink("New Taskitem", "New","Taskitems",null, new { @class = "btn btn-primary"})
+</p>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Taskitem</th>
+            <th>Genre</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
             <tr>
-                <th>Taskitem</th>
-                <th>Genre</th>
+                <td>@Html.ActionLink(item.Name, "Edit","Taskitems", new { id = item.Id }, null)</td>
+                <td>@item.Genre.Name</td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@Html.ActionLink(item.Name, "Details", new { id = item.Id }, null)</td>
-                    <td>@item.Genre.Id</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+        }
+    </tbody>
+</table>
+
 

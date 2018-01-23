@@ -25,8 +25,35 @@ namespace GoldenWayDuties.Controllers
         // GET: Tasks/Random
         public ActionResult Index()
         {
-            var taskitem = _context.Taskitems.Include(c => c.Genre).ToList();
-            return View(taskitem);
+            var taskitems = _context.Taskitems.Include(c => c.Genre).ToList();
+            return View(taskitems);
+        }
+
+        public ActionResult New()
+        {
+            var genre = _context.Genre.ToList();
+            var viewModel = new TaskitemFormViewModel()
+            {
+                Genres = genre
+            };
+
+            return View("TaskitemForm", viewModel);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var taskitem = _context.Taskitems.SingleOrDefault(i => i.Id == id);
+
+            if (taskitem == null)
+                return HttpNotFound();
+
+            var viewModel = new TaskitemFormViewModel()
+            {
+                Taskitem = taskitem,
+                Genres = _context.Genre.ToList()
+            };
+
+            return View("TaskitemForm", viewModel);
         }
 
         public ActionResult Details(int id)
@@ -39,18 +66,7 @@ namespace GoldenWayDuties.Controllers
             return View(taskitem);
         }
 
-        //public IEnumerable<Taskitem> GetTaskitems()
-        //{
-        //    return new List<Taskitem>
-        //    {
-        //        new Taskitem{Name ="Gardening", Id = 1},
-        //        new Taskitem{Name ="Cooking", Id = 2},
-        //        new Taskitem{Name ="Floor cleaning", Id = 3},
-        //        new Taskitem{Name ="Washing", Id = 4},
-        //        new Taskitem{Name = "Other", Id = 5}
-        //    };
-        //}
-
+        //GET: Taskitems/Random
         public ActionResult Random()
         {
             var taskitem = new Taskitem() { Name = "Gardening" };
@@ -71,6 +87,25 @@ namespace GoldenWayDuties.Controllers
             };
 
             return View(viewModel);
+        }
+        
+        [HttpPost]
+        public ActionResult Save(Taskitem taskitem)
+        {
+            if(taskitem.Id == 0)
+                _context.Taskitems.Add(taskitem);
+            else
+            {
+                var taskitemInDb = _context.Taskitems.Single(i => i.Id == taskitem.Id);
+                taskitemInDb.Name = taskitem.Name;
+                taskitemInDb.StartDate = taskitem.StartDate;
+                taskitemInDb.DateAdded = taskitem.DateAdded;
+                taskitemInDb.Genre = taskitem.Genre;
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Taskitems");
         }
 
     }

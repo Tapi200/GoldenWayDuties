@@ -1,13 +1,23 @@
-﻿@model GoldenWayDuties.Models.Taskitem
+﻿@model GoldenWayDuties.ViewModels.RandomTaskitemViewModel
 @{
-    ViewBag.Title = Model.Name;
+    ViewBag.Title = Model.Taskitem.Name;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Name</h2>
-<ul>
-    <li>Genre: @Model.Genre.Name</li>
-    <li>Release Date: @Model.StartDate.ToShortDateString()</li>
-    <li>Date Added: @Model.DateAdded.ToShortDateString()</li>
-</ul>
+<h2>Edit Taskitem</h2>
 
+@using (Html.BeginForm("Edit", "Taskitem"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Taskitem.Name)
+        @Html.TextBoxFor(m => m.Taskitem.Name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Taskitem.StartDate)
+        @Html.TextBoxFor(m => m.Taskitem.StartDate, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Taskitem.GenreId)
+        @Html.DropDownListFor(m => m.Taskitem.GenreId, new SelectList(Model.Genre, "Id", "Name"), new { @class = "form-control" })
+    </div>
+}

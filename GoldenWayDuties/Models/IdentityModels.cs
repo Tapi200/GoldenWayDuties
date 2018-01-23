@@ -22,7 +22,8 @@ namespace GoldenWayDuties.Models
     {
         public DbSet<Owner> Owners { get; set; }
         public DbSet<Taskitem> Taskitems { get; set; }
-
+        public DbSet<ResidentType> ResidentTypes { get; set; }
+        public DbSet<Genre> Genre { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

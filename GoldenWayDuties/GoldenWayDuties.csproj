@@ -260,6 +260,10 @@
     <Compile Include="Migrations\201801131013149_populateTaskitems.Designer.cs">
       <DependentUpon>201801131013149_populateTaskitems.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801151139353_createNewTaskitemForm.cs" />
+    <Compile Include="Migrations\201801151139353_createNewTaskitemForm.Designer.cs">
+      <DependentUpon>201801151139353_createNewTaskitemForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -270,6 +274,8 @@
     <Compile Include="Models\Taskitem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\NewOwnerViewModel.cs" />
+    <Compile Include="ViewModels\TaskitemFormViewModel.cs" />
     <Compile Include="ViewModels\RandomTaskitemViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -336,7 +342,8 @@
     <Content Include="Views\Owners\Details.cshtml" />
     <Content Include="Views\Taskitems\Index.cshtml" />
     <Content Include="Views\Taskitems\Details.cshtml" />
-    <Content Include="Views\Owners\New.cshtml" />
+    <Content Include="Views\Owners\OwnerForm.cshtml" />
+    <Content Include="Views\Taskitems\TaskitemForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -404,6 +411,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801131013149_populateTaskitems.resx">
       <DependentUpon>201801131013149_populateTaskitems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801151139353_createNewTaskitemForm.resx">
+      <DependentUpon>201801151139353_createNewTaskitemForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

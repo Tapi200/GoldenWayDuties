@@ -107,7 +107,15 @@ protected override void Dispose(bool disposing)
 {
 	_context.Dispose();   
 }
-==============	========================================
+==============Building Forms=======================================
+To create a Form, first we need an Action in the controller class. This action should return a view that includes the form.
+        public ActionResult New()
+        {
+            return View();
+        }
+To render a form,we can us Html helper methods:
+
+
 
 ==============	========================================
 

@@ -6,9 +6,11 @@ using System.Web;
 
 namespace GoldenWayDuties.ViewModels
 {
-    public class RandomTaskitemViewModel
+    public class OwnerFormViewModel
     {
-        public Taskitem Taskitem { get; set; }
-        public List<Owner> Owners{ get; set; }
+        public IEnumerable<ResidentType> ResidentTypes { get; set; }
+        public Owner Owner { get; set; }
+
     }
 }
+

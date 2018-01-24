@@ -15,9 +15,9 @@ namespace GoldenWayDuties.ViewModels
             get
             {
                 if (Taskitem != null && Taskitem.Id != 0)
-                    return "Edit Movie";
+                    return "Edit Taskitem";
 
-                return "New Moview";
+                return "New Taskitem";
             }
         }
     }

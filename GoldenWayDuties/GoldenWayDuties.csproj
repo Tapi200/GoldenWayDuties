@@ -264,6 +264,10 @@
     <Compile Include="Migrations\201801151139353_createNewTaskitemForm.Designer.cs">
       <DependentUpon>201801151139353_createNewTaskitemForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801240414549_updateChangesToDb.cs" />
+    <Compile Include="Migrations\201801240414549_updateChangesToDb.Designer.cs">
+      <DependentUpon>201801240414549_updateChangesToDb.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -414,6 +418,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801151139353_createNewTaskitemForm.resx">
       <DependentUpon>201801151139353_createNewTaskitemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801240414549_updateChangesToDb.resx">
+      <DependentUpon>201801240414549_updateChangesToDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

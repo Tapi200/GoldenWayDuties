@@ -15,12 +15,13 @@ namespace GoldenWayDuties.Models
         public string Name { get; set; }
 
         [Display(Name="Start Date")]
-        public DateTime StartDate { get; set; }
-        public DateTime DateAdded { get; set; }
+        public DateTime? StartDate { get; set; }
 
-        [Required]
+        public DateTime? DateAdded { get; set; }
+
         public Genre Genre { get; set; }
 
+        [Required]
         [Display(Name = "Genre")]
         public byte GenreId { get; set; }
     }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity.Validation;
 
 namespace GoldenWayDuties.Controllers
 {
@@ -103,7 +104,16 @@ namespace GoldenWayDuties.Controllers
                 taskitemInDb.Genre = taskitem.Genre;
             }
 
-            _context.SaveChanges();
+            try
+            {
+                _context.SaveChanges();
+            }
+
+            catch (DbEntityValidationException e)
+            {
+                Console.WriteLine(e);
+            }
+
 
             return RedirectToAction("Index", "Taskitems");
         }

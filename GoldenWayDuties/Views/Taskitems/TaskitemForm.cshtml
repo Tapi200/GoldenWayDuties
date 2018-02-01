@@ -8,18 +8,26 @@
 
 @using(Html.BeginForm("Save","Taskitems"))
 {
+    @Html.ValidationSummary()
     <div class="form-group">
-        @Html.LabelFor(m => m.Taskitem.Name)
-        @Html.TextBoxFor(m => m.Taskitem.Name, new { @class = "form-control" })
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Taskitem.StartDate)
-        @Html.TextBoxFor(m => m.Taskitem.StartDate, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.LabelFor(m => m.StartDate)
+        @Html.TextBoxFor(m => m.StartDate, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.StartDate)
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Taskitem.GenreId)
-        @Html.DropDownListFor(m => m.Taskitem.GenreId,new SelectList(Model.Genres,"Id","Name"), new { @class = "form-control" })
+        @Html.LabelFor(m => m.GenreId)
+        @Html.DropDownListFor(m => m.GenreId,new SelectList(Model.Genres,"Id","Name"), new { @class = "form-control" })
     </div>
-    @Html.HiddenFor(m => m.Taskitem.Id)
+    @Html.HiddenFor(m => m.Id)
+    @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-group">Save</button>
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
 }

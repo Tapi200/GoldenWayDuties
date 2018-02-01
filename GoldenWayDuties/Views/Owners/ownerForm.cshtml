@@ -8,17 +8,22 @@
 
 @using (Html.BeginForm("Save", "Owners"))
 {
+    @Html.ValidationSummary()
+    @*@Html.ValidationSummary(true, "Please fix the following errors")*@
     <div class="form-group">
         @Html.LabelFor(m => m.Owner.Name)
         @Html.TextBoxFor(m => m.Owner.Name, new { @class = "form-control"})
+        @Html.ValidationMessageFor(m => m.Owner.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Owner.ResidentTypeId)
+        @Html.DropDownListFor(m => m.Owner.ResidentTypeId, new SelectList(Model.ResidentTypes, "Id", "Name"), "Select Resident Type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Owner.ResidentTypeId)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Owner.DateOfBirth)
         @Html.TextBoxFor(m => m.Owner.DateOfBirth,"{0:d MMM yyyy}", new { @class = "form-control" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Owner.ResidentTypeId)
-        @Html.DropDownListFor(m => m.Owner.ResidentTypeId, new SelectList(Model.ResidentTypes,"Id","Name"), "Select Resident Type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Owner.DateOfBirth)
     </div>
     <div class="checkbox">
         <label>
@@ -26,5 +31,11 @@
         </label>
     </div>
     @Html.HiddenFor(m => m.Owner.Id)
+    @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
 }

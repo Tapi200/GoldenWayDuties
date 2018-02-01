@@ -116,14 +116,85 @@ To create a Form, first we need an Action in the controller class. This action s
 To render a form,we can us Html helper methods:
 
 
+==============Model validation	========================================
+Adding Validation
+ASP.Net MVC uses data annotations to validate action parameters.
+We can use model state property to get access to validation data.
+ModelState object has a property called IsValid which we can use to change the application flow.
+3 steps to follow to add validation:
+i) Add data annotations on your entities e.g [Requires], [StringLength(255)],
+ii) Use ModelState.IsValid to change the flow of the program. If the ModelState is not valid, return the same view.
+	if (!ModelState.IsValid)
+	{
+		var viewModel = new OwnerFormViewModel
+		{
+			Owner = owner,
+			ResidentTypes = _context.ResidentTypes.ToList()
+		};
+		return View("OwnerForm");
+	}
+ii) Add validation messages to our form.
 
-==============	========================================
+****Custom Validation****
+    public class Min20YearsIfParent : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            var owner = (Owner) validationContext.ObjectInstance;
 
-==============	========================================
+            if (owner.ResidentTypeId == 0 || owner.ResidentTypeId != 1)
+                return ValidationResult.Success;
 
-==============	========================================
+            if (owner.DateOfBirth == null)
+                return new ValidationResult("date of birth required");
 
-==============	========================================
+            var age = DateTime.Today.Year - owner.DateOfBirth.Value.Year;
+
+           return (age >= 18)
+                ? ValidationResult.Success 
+                : new ValidationResult("Owner should be at least 18 years old to be a Parent");
+           
+        }
+    }
+	
+    public class Owner
+    {
+        [Display(Name = "Date Of Birth")]
+        [Min20YearsIfParent]
+        public DateTime? DateOfBirth { get; set; }
+    }
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Owner.DateOfBirth)
+        @Html.TextBoxFor(m => m.Owner.DateOfBirth,"{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Owner.DateOfBirth)
+    </div>
+	
+=============Re-factoring Magic Numbers========================================
+    public class ResidentType
+    {
+        public static readonly byte Unknown = 0;
+        public static readonly byte Parent = 1;
+        public static readonly byte Teenager = 2;
+        public static readonly byte Child = 3;
+        public static readonly byte Toddler = 4;
+    }
+	{
+		var owner = (Owner) validationContext.ObjectInstance;
+		if (owner.ResidentTypeId == ResidentType.Unknown || owner.ResidentTypeId != ResidentType.Parent)
+		return ValidationResult.Success;
+	}
+
+==============Anti-Forgery Token	========================================
+Anti-Forgery token are used to prevent Cross-site Request Forgery (CSRF).
+To prevent this type of attack, need to ensure the request only comes from our customer form and not from a different website. Need to follow two steps:
+i) @Html.Anti-ForgeryToken() helper method to the form
+ii) Decorate the Save action with [ValidateAntiForgeryToken] attribute
+    [HttpPost] 
+	[ValidateAntiForgeryToken]
+MVC frame handles all the complexities of generating A token, encrypting it and  validating it.
+
+==============RESTful Services=======================================
 
 ==============	========================================
 

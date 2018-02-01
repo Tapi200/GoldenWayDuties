@@ -48,9 +48,8 @@ namespace GoldenWayDuties.Controllers
             if (taskitem == null)
                 return HttpNotFound();
 
-            var viewModel = new TaskitemFormViewModel()
+            var viewModel = new TaskitemFormViewModel(taskitem)
             {
-                Taskitem = taskitem,
                 Genres = _context.Genre.ToList()
             };
 
@@ -91,8 +90,18 @@ namespace GoldenWayDuties.Controllers
         }
         
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Taskitem taskitem)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new TaskitemFormViewModel(taskitem)
+                {
+                    Genres = _context.Genre.ToList()
+                };
+                return View("TaskitemForm", viewModel);
+            }
+
             if(taskitem.Id == 0)
                 _context.Taskitems.Add(taskitem);
             else
@@ -113,7 +122,6 @@ namespace GoldenWayDuties.Controllers
             {
                 Console.WriteLine(e);
             }
-
 
             return RedirectToAction("Index", "Taskitems");
         }

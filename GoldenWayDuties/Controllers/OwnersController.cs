@@ -26,6 +26,7 @@ namespace GoldenWayDuties.Controllers
             var residentTypes = _context.ResidentTypes.ToList();
             var viewModel = new OwnerFormViewModel
             {
+                Owner = new Owner(),
                 ResidentTypes = residentTypes
             };
             
@@ -33,9 +34,21 @@ namespace GoldenWayDuties.Controllers
         }
 
         [HttpPost] //since Action is to modify data, this ensure it's not accessible via HttpGet
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Owner owner)
         {
-            if(owner.Id == 0)
+            if(!ModelState.IsValid)
+            {
+                var viewModel = new OwnerFormViewModel
+                {
+                    Owner = owner,
+                    ResidentTypes = _context.ResidentTypes.ToList()
+                };
+
+                return View("OwnerForm", viewModel);
+            }
+
+            if (owner.Id == 0)
                 _context.Owners.Add(owner);
             else
             {

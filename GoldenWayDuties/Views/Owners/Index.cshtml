@@ -21,11 +21,12 @@
 }
 else
 {
-    <table class="table table-bordered table-hover">
+    <table id="owners" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Owner</th>
                 <th>Resident Type</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -34,9 +35,22 @@ else
                 <tr>
                     <td>@Html.ActionLink(owner.Name,"Edit", "Owners", new { id = owner.Id}, null)</td>
                     <td>@owner.ResidentType.Name</td>
+                    <td>
+                        <button class="btn-link" js-delete>Delete</button>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 }
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#owners .js-delete").on("click", function () {
+                confirm("Are you sure you want to delete this customer?");
+            })
+        });
 
+    </script>
+}

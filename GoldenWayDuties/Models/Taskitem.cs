@@ -15,6 +15,7 @@ namespace GoldenWayDuties.Models
         public string Name { get; set; }
 
         [Display(Name="Start Date")]
+        [Required]
         public DateTime? StartDate { get; set; }
 
         public DateTime? DateAdded { get; set; }

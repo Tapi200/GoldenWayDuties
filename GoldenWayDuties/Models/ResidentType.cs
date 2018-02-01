@@ -12,5 +12,11 @@ namespace GoldenWayDuties.Models
         public short SignUpFee { get; set; }
         public byte DurataionInMonths { get; set; }
         public byte DiscountRate { get; set; }
+
+        public static readonly byte Unknown = 0;
+        public static readonly byte Parent = 1;
+        public static readonly byte Teenager = 2;
+        public static readonly byte Child = 3;
+        public static readonly byte Toddler = 4;
     }
 }

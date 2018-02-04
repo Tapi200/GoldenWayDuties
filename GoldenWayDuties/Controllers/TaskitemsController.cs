@@ -24,10 +24,9 @@ namespace GoldenWayDuties.Controllers
         }
 
         // GET: Tasks/Random
-        public ActionResult Index()
+        public ViewResult Index()
         {
-            var taskitems = _context.Taskitems.Include(c => c.Genre).ToList();
-            return View(taskitems);
+            return View();
         }
 
         public ActionResult New()

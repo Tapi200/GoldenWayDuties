@@ -2,6 +2,7 @@
 using GoldenWayDuties.Dtos;
 using GoldenWayDuties.Models;
 using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -22,7 +23,10 @@ namespace GoldenWayDuties.Controllers.Api
         //GET /api/owners
         public IHttpActionResult GetOwners()
         {
-            var ownerDtos = _context.Owners.ToList().Select(Mapper.Map<Owner, OwnerDto>);
+            var ownerDtos = _context.Owners
+                .Include(o => o.ResidentType)
+                .ToList()
+                .Select(Mapper.Map<Owner, OwnerDto>);
 
             return Ok(ownerDtos);
         } 

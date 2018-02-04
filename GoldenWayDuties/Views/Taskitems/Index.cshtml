@@ -10,22 +10,89 @@
     @Html.ActionLink("New Taskitem", "New","Taskitems",null, new { @class = "btn btn-primary"})
 </p>
 
-<table class="table table-bordered table-hover">
+<table id="taskitems" class="table table-bordered table-hover">
     <thead>
         <tr>
             <th>Taskitem</th>
             <th>Genre</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@Html.ActionLink(item.Name, "Edit","Taskitems", new { id = item.Id }, null)</td>
-                <td>@item.Genre.Name</td>
-            </tr>
-        }
     </tbody>
 </table>
+
+@section scripts
+    {
+    <script>
+        $(document).ready(function () {
+            var table = $("#taskitems").DataTable({
+                ajax: {
+                    url: "/api/taskitems",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, taskitem) {
+                            return "<a href='/taskitem/edit/" + taskitem.Id + "'>" + taskitem.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "genre.name"
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button class='btn-link js-delete' data-taskitem-id=" + data + ">Delete</button>";
+                        }
+                    }
+
+                ]
+
+            });
+
+            $("#taskitems").on("click","js-delete", function () {
+                var button = $(this);
+                if (confirm("Would you like to delete?")) {
+                    $.ajax({
+                        url: "/api/taskitems/" + button.attr("data-taskitem-id"),
+                        method: "DELETE",
+                        success: function () {
+                            table.row(button.parents("tr")).remove().draw();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
+
+@*
+    @section scripts
+    {
+        <script>
+            $(document).ready(function () {
+                $("#taskitems .js-delete").on("click", function () {
+                    var button = $(this);
+
+                    bootbox.confirm("Are you sure to delete", function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/taskitems/" + button.attr("data-taskitem-id"),
+                                method: "DELETE",
+                                success: function () {
+                                    button.parents("tr").remove();
+                                }
+                            });
+                        }
+                    });
+                });
+            });
+        </script>
+    }
+*@
+
+
 
 

@@ -23,7 +23,9 @@ namespace GoldenWayDuties.Controllers.Api
         //GET /Api/taskitems
         public IHttpActionResult GetTaskitems()
         {
-            var taskitemDtos = _context.Taskitems.ToList().Select(Mapper.Map<Taskitem, TaskitemDto>);
+            var taskitemDtos = _context.Taskitems
+                .Include(t => t.Genre)
+                .ToList().Select(Mapper.Map<Taskitem, TaskitemDto>);
 
             return Ok(taskitemDtos);
         }

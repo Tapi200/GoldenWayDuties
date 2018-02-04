@@ -5,6 +5,8 @@ Ctrl+r 		:	refresh the browser
 Ctrl+Shift+B: 	re-compile/build the program without reloading the browser
 ctrl+tab: 	move between open windows in your project
 mcvaction4+tab:	creates an action result
+ctrl+shift+i : opens chrome development tools
+
 
 
 ==============ASP.NET MVC Fundamentals==============================

@@ -68,8 +68,7 @@ namespace GoldenWayDuties.Controllers
 
         public ActionResult Index()
         {
-            var owners = _context.Owners.Include(c => c.ResidentType).ToList();
-            return View(owners);
+            return View();
         }
 
         public ActionResult Details(int id)
